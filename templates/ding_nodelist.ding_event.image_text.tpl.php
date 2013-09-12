@@ -33,7 +33,14 @@ $event_date = _ding_nodelist_get_event_date($item);
     <div class="library">
       <div class="event-time">
         <span><?php print t('Time');?></span>
-        <span><?php print format_date($event_date, 'custom', 'H:i');?></span>
+        <span>
+        <?php
+          $display = array('settings' => array('format_type' => 'time_only'));
+          $output = field_view_field('node', $item, 'field_event_date', $display);
+          $output['#label_display'] = 'hidden';
+          echo drupal_render($output);
+        ?>
+        </span>
       </div>
       <?php
         $audience = field_view_field('node', $item, 'group_audience', 'teaser');

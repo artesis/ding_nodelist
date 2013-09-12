@@ -234,3 +234,7 @@ h3 {
   height: 150px;
   width: 100%;
 }
+
+.event-time * {
+  display: inline;
+}

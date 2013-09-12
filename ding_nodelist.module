@@ -545,13 +545,13 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     '#type' => 'fieldset',
     '#title' => t('Various'),
   );
-  
+
   // Initialize drop-down array's values.
-  $options = array(0 => 'none') 
+  $options = array(0 => 'none')
   + array_combine(range(1, 25), range(1, 25))
   + array_combine(range(30, 50, 5), range(30, 50, 5))
   + array_combine(range(50, 100, 10), range(50, 100, 10));
-  
+
   $form['ding_nodelist_wrapper']['nodelist_various_settings']['limit'] = array(
     '#type' => 'select',
     '#title' => t('Item limit'),
@@ -1459,13 +1459,13 @@ function ding_nodelist_content_type_render($subtype, $conf, $args, $context) {
   // Load items by their IDs.
   $nodes = node_load_multiple($nodes);
 
-  // Remove elements if they are of type carousel, single item, vertical 
+  // Remove elements if they are of type carousel, single item, vertical
   // accordion or horizontal accordion and do not contain list image.
   if (in_array($conf['widget_type'], array('single', 'carousel', 'horizontal_accordion', 'vertical_accordion'))) {
    foreach ($nodes as $key => $node) {
      if (count($node->field_list_image) <= 0) {
        unset($nodes[$key]);
-     }  
+     }
    }
   }
 
