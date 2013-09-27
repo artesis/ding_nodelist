@@ -1825,54 +1825,115 @@ function _ding_nodelist_get_custom_list_nodes(&$conf) {
 }
 
 /**
+ * Sort callback to compare nodes by event date field.
+ *
+ * @param stdClass $a
+ *   Node a.
+ * @param stdClass $b
+ *   Node b.
+ *
+ * @return int
+ *   Values -1 (smaller), 0 (equal), 1 (bigger).
+ */
+function _ding_nodelist_sort_nodes_by_event_date($a, $b) {
+  $field = field_get_items('node', $a, 'field_event_date');
+  $time = new DateTime($field[0]['value'], new DateTimeZone('UTC'));
+  $time1 = $time->getTimestamp();
+
+  $field = field_get_items('node', $b, 'field_event_date');
+  $time = new DateTime($field[0]['value'], new DateTimeZone('UTC'));
+  $time2 = $time->getTimestamp();
+
+  if ($time1 < $time2) {
+    return -1;
+  }
+  if ($time1 == $time2) {
+    return 0;
+  }
+  return 1;
+}
+
+/**
+ * Sort callback to compare nodes by created date.
+ *
+ * @param stdClass $a
+ *   Node a.
+ * @param stdClass $b
+ *   Node b.
+ *
+ * @return int
+ *   Values -1 (smaller), 0 (equal), 1 (bigger).
+ */
+function _ding_nodelist_sort_nodes_by_created($a, $b) {
+  if ($a->created < $b->created) {
+    return -1;
+  }
+  if ($a->created == $b->created) {
+    return 0;
+  }
+  return 1;
+}
+
+/**
+ * Sort callback to compare nodes by title.
+ *
+ * @param stdClass $a
+ *   Node a.
+ * @param stdClass $b
+ *   Node b.
+ *
+ * @return int
+ *   Values -1 (smaller), 0 (equal), 1 (bigger).
+ */
+function _ding_nodelist_sort_nodes_by_title($a, $b) {
+  return strnatcasecmp($a->title, $b->title);
+}
+
+/**
+ * Sort callback to compare nodes by sticky flag.
+ *
+ * @param stdClass $a
+ *   Node a.
+ * @param stdClass $b
+ *   Node b.
+ *
+ * @return int
+ *   Values -1 (smaller), 0 (equal), 1 (bigger).
+ */
+function _ding_nodelist_sort_nodes_by_sticky($a, $b) {
+  // "a" is sticky, "b" is not.
+  if ($a->sticky && !$b->sticky) {
+    return -1;
+  }
+  // "b" is sticky, "a" is not.
+  if (!$a->sticky && $b->sticky) {
+    return 1;
+  }
+
+  // Both have same flag.
+  return 0;
+}
+
+/**
  * Sorts the nodes according to the settings.
  *
  * @param array $nodes
  *   List of loaded node objects.
  * @param array $conf
  *   Nodelist configuration.
- * @return array of sorted nodes.
+ *
+ * @return array
+ *   Sorted nodes.
  */
 function _ding_nodelist_sort_nodes($nodes, $conf) {
   if ($conf['sort_field']) {
-    $sorted_nodes = array();
-    foreach ($nodes as $node) {
-      // Prepare for custom sorting.
-      if ($node->type == 'ding_event' && $conf['sort_field'] == 'event_date') {
-        $sorted_nodes[_ding_nodelist_get_event_date($node)] = $node;
-      }
-      elseif ($conf['sort_field'] == 'created') {
-        $sorted_nodes[$node->created] = $node;
-      }
-      elseif ($conf['sort_field'] == 'title') {
-        $sorted_nodes[$node->title] = $node;
-      }
-      // Sticky nodes will be always shown first.
-      elseif ($conf['sort_field'] == 'sticky') {
-        // S (in 'sticky') goes after N (in 'nonsticky'), use them for sorting.
-        $node_index = $node->sticky ? 'sticky' . $node->nid : 'notsticky' . $node->nid;
-        $sorted_nodes[$node_index] = $node;
-        $conf['sort_order'] = 'desc';
-      }
-    }
+    $callback = '_ding_nodelist_sort_nodes_by_' . $conf['sort_field'];
 
-    // Use natural sorting for strings.
-    if ($conf['sort_field'] == 'title') {
-      uksort($sorted_nodes, 'strnatcasecmp');
-      if ($conf['sort_order'] == 'desc') {
-        $sorted_nodes = array_reverse($sorted_nodes);
-      }
+    usort($nodes, $callback);
+    if ($conf['sort_order'] == 'desc') {
+      $nodes = array_reverse($nodes);
     }
-    // And common sorting for other cases.
-    else {
-      if ($conf['sort_order'] == 'asc') {
-        ksort($sorted_nodes);
-      }
-      else {
-        krsort($sorted_nodes);
-      }
-    }
-    return array_values($sorted_nodes);
+    return $nodes;
   }
   else {
     return $nodes;
