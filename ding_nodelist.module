@@ -2130,4 +2130,58 @@ function _ding_nodelist_striptags($nodes) {
   return $nodes;
 }
 
+/**
+ * Implements hook_date_format_types().
+ */
+function ding_nodelist_date_format_types() {
+  return array(
+    'nodelist_ding_page_taxonomy'  => t('Nodelist Ding page Taxonomy'),
+    'nodelist_event_slider'  => t('Nodelist Event Slider'),
+    'nodelist_event_taxonomy'  => t('Nodelist Event Taxonomy'),
+    'nodelist_news_slider'  => t('Nodelist News Slider'),
+    'nodelist_news_taxonomy'  => t('Nodelist News Taxonomy'),
+    'nodelist_news_text'  => t('Nodelist News Text'),
+  );
+}
+
+/**
+ * Implements hook_date_formats().
+ */
+function ding_nodelist_date_formats() {
+  $formats = array();
+  $formats[] = array(
+    'type'    => 'nodelist_ding_page_taxonomy',
+    'format'  => 'Y-m-d',
+  );
+  $formats[] = array(
+    'type'    => 'nodelist_event_slider',
+    'format'  => 'd/m/Y',
+  );
+  $formats[] = array(
+    'type'    => 'nodelist_event_taxonomy',
+    'format'  => 'Y-m-d',
+  );
+  $formats[] = array(
+    'type'    => 'nodelist_news_slider',
+    'format'  => 'd/m/Y',
+  );
+  $formats[] = array(
+    'type'    => 'nodelist_news_taxonomy',
+    'format'  => 'd/m/Y',
+  );
+  $formats[] = array(
+    'type'    => 'nodelist_news_text',
+    'format'  => 'd/m/Y',
+  );
+
+  // Set default values.
+  foreach ($formats as $format) {
+    if (!variable_get('date_format_' . $format['type'])) {
+      variable_set('date_format_' . $format['type'], $format['format']);
+    }
+  }
+
+  return $formats;
+}
+
 include_once('ding_nodelist.features.inc');

@@ -15,7 +15,7 @@ if (!empty($item->publish_on)) {
 else {
   $date = $item->created;
 }
-$date = format_date($date, 'custom', 'd/m/Y');
+$date = format_date($date, 'nodelist_news_taxonomy');
 $author = $item->name;
 
 /**
