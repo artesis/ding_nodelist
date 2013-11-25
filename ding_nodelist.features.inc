@@ -20,7 +20,7 @@ function ding_nodelist_ctools_plugin_api() {
 function ding_nodelist_image_default_styles() {
   $styles = array();
 
-  // Exported image style: ding_nodelist_extra_medium
+  // Exported image style: ding_nodelist_extra_medium.
   $styles['ding_nodelist_extra_medium'] = array(
     'name' => 'ding_nodelist_extra_medium',
     'effects' => array(
@@ -56,9 +56,10 @@ function ding_nodelist_image_default_styles() {
         'weight' => '2',
       ),
     ),
+    'label' => 'ding_nodelist_extra_medium',
   );
 
-  // Exported image style: ding_nodelist_large
+  // Exported image style: ding_nodelist_large.
   $styles['ding_nodelist_large'] = array(
     'name' => 'ding_nodelist_large',
     'effects' => array(
@@ -94,9 +95,10 @@ function ding_nodelist_image_default_styles() {
         'weight' => '2',
       ),
     ),
+    'label' => 'ding_nodelist_large',
   );
 
-  // Exported image style: ding_nodelist_medium
+  // Exported image style: ding_nodelist_medium.
   $styles['ding_nodelist_medium'] = array(
     'name' => 'ding_nodelist_medium',
     'effects' => array(
@@ -132,9 +134,10 @@ function ding_nodelist_image_default_styles() {
         'weight' => '2',
       ),
     ),
+    'label' => 'ding_nodelist_medium',
   );
 
-  // Exported image style: ding_nodelist_mini
+  // Exported image style: ding_nodelist_mini.
   $styles['ding_nodelist_mini'] = array(
     'name' => 'ding_nodelist_mini',
     'effects' => array(
@@ -170,9 +173,10 @@ function ding_nodelist_image_default_styles() {
         'weight' => '2',
       ),
     ),
+    'label' => 'ding_nodelist_mini',
   );
 
-  // Exported image style: ding_nodelist_small
+  // Exported image style: ding_nodelist_small.
   $styles['ding_nodelist_small'] = array(
     'name' => 'ding_nodelist_small',
     'effects' => array(
@@ -208,6 +212,7 @@ function ding_nodelist_image_default_styles() {
         'weight' => '2',
       ),
     ),
+    'label' => 'ding_nodelist_small',
   );
 
   return $styles;
