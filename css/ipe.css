@@ -270,8 +270,12 @@ html.js fieldset.collapsed {
   padding: 2px;
   border: 1px solid #ccc;
   border-top-color: #999;
-  background: #fff;
+  background-color: #fff;
   color: #333;
+}
+#modalContent select {
+  height: 30px;
+  line-height: 30px;
 }
 #modalContent input.form-text:focus,
 #modalContent input.form-file:focus,
