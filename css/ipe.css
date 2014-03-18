@@ -273,11 +273,9 @@ html.js fieldset.collapsed {
   background-color: #fff;
   color: #333;
 }
-#ding_nodelist-form-wrapper select {
-  line-height: 1;
-}
-#ding_nodelist-form-wrapper .form-submit {
-  margin-right: 10px;
+#modalContent select {
+  height: 30px;
+  line-height: 30px;
 }
 #modalContent input.form-text:focus,
 #modalContent input.form-file:focus,
