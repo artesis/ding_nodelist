@@ -15,7 +15,7 @@ $edbase = field_view_field('node', $item, 'field_editorial_base_e', 'teaser');
 ?>
 <div class="item">
   <span class="date-created">
-    <?php print _ding_nodelist_get_ding_news_format_date($item, 'nodelist_news_slider'); ?>
+    <?php print _ding_nodelist_get_ding_news_date($item, 'nodelist_news_slider'); ?>
   </span> -
   <span class="category">
     <?php print drupal_render($edbase);?>
