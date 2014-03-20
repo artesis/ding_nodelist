@@ -17,6 +17,9 @@ $background_image_style = $image ? ' style="background-image: url(\'' . image_st
 <div class="item news va-slice"<?php print $background_image_style; ?>>
   <div class="va-title">
     <div class="event-label"><?php print t('News');?></div>
+    <span class="date-created">
+      <?php print _ding_nodelist_get_ding_news_date($item); ?>
+    </span>
   </div>
   <div class="va-content">
     <div class="caption">

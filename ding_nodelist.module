@@ -2184,4 +2184,12 @@ function ding_nodelist_date_formats() {
   return $formats;
 }
 
+/**
+ * Helper function that returns ding_news date by predefined format.
+ */
+function _ding_nodelist_get_ding_news_date($node, $format = 'nodelist_news_taxonomy') {
+  $date = !empty($node->publish_on) ? $node->publish_on : $date = $node->created;
+  return format_date($date, $format);
+}
+
 include_once('ding_nodelist.features.inc');

@@ -17,6 +17,9 @@ $image = _ding_nodelist_get_dams_image_info($item, 'field_list_image');
 <li class="item news">
   <div class="expand"><?php print l($item->title, 'node/' . $item->nid);?></div>
   <div class="label"><?php print t('News');?></div>
+  <span class="date-created">
+    <?php print _ding_nodelist_get_ding_news_date($item); ?>
+  </span>
   <div class="image"><?php print $image ? theme('image_style', array_merge($image, array('style_name' => $conf['image_style']))) : '';?></div>
   <div class="data">
     <div class="caption">
