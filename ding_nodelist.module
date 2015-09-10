@@ -1561,7 +1561,7 @@ function _ding_nodelist_init_image_style($widget, $region) {
     case NL_WIDGET_CAROUSEL:
     case NL_WIDGET_SINGLE:
     case NL_WIDGET_VER_ACCORDION:
-      return $layout['regions_image_styles'][$region];
+      return 'ding_nodelist_medium';
     case NL_WIDGET_TAXONOMY_LIKE:
     case NL_WIDGET_SLIDER:
       return 'ding_large';
