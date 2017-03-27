@@ -90,16 +90,13 @@ h3 {
   font-family: Myriad Pro,"Lucida Grande","Lucida Sans Unicode",Segoe UI,Helvetica,Arial,sans-serif;
 }
 
-
 .node {
   height: auto;
   padding: 10px 15px;
-  margin-top: 20px;
   text-align: justify;
   vertical-align: baseline;
   color: #5f6a5f;
   font: 0.8em/165% "Lucida Grande","Lucida Sans Unicode",Segoe UI,Helvetica,Arial,sans-serif;
-
 }
 
 .event_body {
