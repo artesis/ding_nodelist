@@ -7,6 +7,7 @@
 
 $title = $item->title;
 $body = field_view_field('node', $item, 'field_ding_body', 'teaser');
+$body[0]['#markup'] = strip_tags($body['#items'][0]['safe_summary'], '<a><p><br>');
 $body = drupal_render($body);
 $image = _ding_nodelist_get_dams_image_info($item, 'field_page_list_image');
 
